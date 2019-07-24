@@ -2,3 +2,4 @@
 - [ ] Working with db
 - [ ] Rest-api with Integrant
 - [ ] Rest-api with Duct
+- [ ] Content negotiation
