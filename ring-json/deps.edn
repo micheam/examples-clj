@@ -1,0 +1,23 @@
+{:paths ["resources" "src"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}
+        ring/ring-core {:mvn/version "1.7.1"}
+        ring/ring-jetty-adapter {:mvn/version "1.7.1"}
+        ring/ring-json {:mvn/version "0.4.0"}
+        cheshire {:mvn/version "5.6.3"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {com.cognitect/test-runner
+                      {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                       :sha "76568540e7f40268ad2b646110f237a60295fa3c"}}
+         :main-opts ["-m" "cognitect.test-runner" "-d" "test"]}
+  :uberjar {:extra-deps {luchiniatwork/cambada {:mvn/version "1.0.0"}}
+            :main-opts ["-m" "cambada.uberjar" "-m" "greeter"]}
+  :native-image {:main-opts ["-m clj.native-image greeter"
+                             "--initialize-at-build-time"
+                             ;; optional native image name override
+                             "-H:Name=greeter"]
+                 :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
+                 :extra-deps {clj.native-image 
+                              {:git/url "https://github.com/taylorwood/clj.native-image.git"
+                               :sha "7708e7fd4572459c81f6a6b8e44c96f41cdd92d4"}}}}
+ }
