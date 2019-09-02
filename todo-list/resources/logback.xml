@@ -1,0 +1,20 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+        ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="todo-list.usecase" level="DEBUG"/>
+    <logger name="todo-list.usecase.todo" level="DEBUG"/>
+    <logger name="todo-list.web.core" level="DEBUG"/>
+    <logger name="todo-list.web.handler" level="DEBUG"/>
+    <logger name="todo-list.interface.onmemory" level="DEBUG"/>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

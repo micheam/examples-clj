@@ -36,9 +36,9 @@
 (deftest create
 
   (testing "return created todo on success"
-    (let [f (fn [t] (assoc t :createdAt (time/local-date-time)))
+    (let [f (fn [t] (assoc t :created-at (time/local-date-time)))
           todo {:title "aaaaa", :desc "bbbbb"}
           actual (sut/create todo f)]
       (is (= (get todo :title) (get actual :title)))
       (is (= (get todo :desc) (get actual :desc)))
-      (is (contains? actual :createdAt)))))
+      (is (contains? actual :created-at)))))

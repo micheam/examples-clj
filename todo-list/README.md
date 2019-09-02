@@ -1,42 +1,75 @@
-# core
+# todo-list
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+This is a sample implementation of Web-Application with clojure and ring,  
+which provide manage your todo-list.
 
 ## Usage
 
-FIXME: explanation
+Run the server directly:
 
-Run the project directly:
+    $ clj -m todo-list.web.main
 
-    $ clj -m todo-list.core
-
-Run the project's tests (they'll fail until you edit them):
+Run the project's tests:
 
     $ clj -A:test:runner
 
-## Options
+## Endpoints
 
-FIXME: listing of options this app accepts.
+- `GET /todo`
+- `POST /todo`
+- `GET /todo/:id`
+- `PATCH /todo/:id`
+- `DELETE /todo/:id`
 
 ## Examples
 
-...
+Create new todo:
+```sh
+curl -i -X POST \
+  -H'Content-Type: application/json' \
+  -d'{"title":"read clojure book: Programming Clojure"}' \
+  http://localhost:3000/todo
 
-### Bugs
+# HTTP/1.1 201 Created
+# Date: Fri, 06 Sep 2019 16:20:07 GMT
+# Location: /todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
+# Content-Length: 0
+# Server: Jetty(9.4.12.v20180830)
+```
 
-...
+Show todo:
+```sh
+curl -s http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b | jq '.'
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+# {
+#   "title": "read clojure book: Programming Clojure",
+#   "description": null,
+#   "done": false,
+#   "id": "d05bcd56-3616-4f02-a8c3-279c08ae790b",
+#   "created-at": "2019-09-07T01:20:07.363"
+# }
+```
 
-## License
+Edit todo:
+```sh
+curl -i -X PATCH \
+  -d'{"descriptin":"https://www.amazon.co.jp/Programming-Clojure-Pragmatic-Programmers-Miller/dp/1680502468/ref=dp_ob_title_bk"}' \
+  http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
+ 
+# HTTP/1.1 200 OK
+# Date: Fri, 06 Sep 2019 16:24:44 GMT
+# Content-Length: 0
+# Server: Jetty(9.4.12.v20180830)sh
+```
 
-Copyright © 2019 FIXME
+Delete todo:
+```sh
+curl -i -X DELETE \
+  http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+# HTTP/1.1 200 OK
+# Date: Fri, 06 Sep 2019 16:27:23 GMT
+# Content-Length: 0
+# Server: Jetty(9.4.12.v20180830)
+```
+

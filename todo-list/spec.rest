@@ -1,0 +1,25 @@
+http://localhost:3000
+
+--
+--
+POST /todo
+{
+    "title": "learn clojure!",
+    "description": "This is a description for todo."
+}
+
+--
+GET /todo
+
+--
+GET /todo/20ca1b99-fd37-4e96-af34-fa26e072dce2
+
+--
+DELETE /todo/20ca1b99-fd37-4e96-af34-fa26e072dce2
+
+--
+PATCH /todo/20ca1b99-fd37-4e96-af34-fa26e072dce2
+{
+    "title": "changed title 📝",
+    "done": true
+}
