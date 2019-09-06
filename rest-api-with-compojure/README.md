@@ -1,7 +1,8 @@
-# Json API With Compojure
+# Rest API With Compojure
 
-This is a sample implementation of Web-Application with clojure and ring,  
-which provide manage your todo-list.
+This is a sample implementation of Web-Application with [ring-clojure/ring](https://github.com/ring-clojure/ring) and [weavejester/compojure](https://github.com/weavejester/compojure).  
+
+This provides simple todo-list web-app.
 
 ## Usage
 
