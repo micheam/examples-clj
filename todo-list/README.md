@@ -23,7 +23,7 @@ Run the project's tests:
 
 ## Examples
 
-Create new todo:
+Create new item:
 ```sh
 curl -i -X POST \
   -H'Content-Type: application/json' \
@@ -37,7 +37,7 @@ curl -i -X POST \
 # Server: Jetty(9.4.12.v20180830)
 ```
 
-Show todo:
+Show item:
 ```sh
 curl -s http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b | jq '.'
 
@@ -50,7 +50,7 @@ curl -s http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b | jq '.'
 # }
 ```
 
-Edit todo:
+Edit item:
 ```sh
 curl -i -X PATCH \
   -d'{"descriptin":"https://www.amazon.co.jp/Programming-Clojure-Pragmatic-Programmers-Miller/dp/1680502468/ref=dp_ob_title_bk"}' \
@@ -62,7 +62,7 @@ curl -i -X PATCH \
 # Server: Jetty(9.4.12.v20180830)sh
 ```
 
-Delete todo:
+Delete item:
 ```sh
 curl -i -X DELETE \
   http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
