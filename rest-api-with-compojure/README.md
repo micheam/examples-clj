@@ -1,4 +1,4 @@
-# todo-list
+# Json API With Compojure
 
 This is a sample implementation of Web-Application with clojure and ring,  
 which provide manage your todo-list.
