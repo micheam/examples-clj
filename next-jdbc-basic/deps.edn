@@ -1,0 +1,4 @@
+{:paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "RELEASE"}
+        seancorfield/next.jdbc {:mvn/version "1.0.7"}
+        com.impossibl.pgjdbc-ng/pgjdbc-ng {:mvn/version "0.8.2"}}}
