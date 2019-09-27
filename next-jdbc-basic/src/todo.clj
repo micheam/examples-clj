@@ -6,7 +6,8 @@
             [next.jdbc :as jdbc]
             [next.jdbc.sql :as sql]
             [next.jdbc.result-set :as result-set]))
-;;; specs
+;;; Specs
+
 (s/def ::local-date-time
   (s/with-gen t/local-date-time?
     #(g/fmap (fn [^java.lang.Long ms] (t/local-date-time (t/instant ms) (t/zone-id)))
@@ -20,9 +21,17 @@
 (s/def ::todo (s/keys :req-un [::id ::title ::done]
                       :opt-un [::created-at]))
 
+;;; Helpers
+
 (defn random-todo [] (g/generate (s/gen ::todo)))
 
-;;; main
+(def snake-to-kebab {:column-fn #(str/replace % #"-" "_")
+                     :builder-fn result-set/as-modified-maps
+                     :label-fn #(str/replace % #"_" "-")
+                     :qualifier-fn #(str/replace % #"_" "-")})
+
+;;; Database settings
+
 (def db-spec {:dbtype "pgsql"
               :dbname "next-jdbc-basic"
               :user "postgres"})
@@ -41,10 +50,7 @@
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
           );"])))
 
-(def snake-to-kebab {:column-fn #(str/replace % #"-" "_")
-                     :builder-fn result-set/as-modified-maps
-                     :label-fn #(str/replace % #"_" "-")
-                     :qualifier-fn #(str/replace % #"_" "-")})
+;;; Usecases
 
 (defn insert-init-data [n]
   (jdbc/with-transaction [tx ds]
