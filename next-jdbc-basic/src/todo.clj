@@ -15,7 +15,9 @@
                               (t/to-millis-from-epoch (t/instant (t/zoned-date-time 2019 12 31))))))))
 
 (s/def ::id uuid?)
+
 (s/def ::title (s/and string? #(>= 256 (count %))))
+
 (s/def ::done boolean?)
 (s/def ::created-at ::local-date-time)
 (s/def ::todo (s/keys :req-un [::id ::title ::done]
@@ -68,5 +70,11 @@
         (sql/update! tx :todo {:done true} {:id (:todo/id found)})
         (throw (ex-info "Not Found" {:type :not-found}))))))
 
+(defn get-todo [id]
+  (sql/get-by-id ds :todo (java.util.UUID/fromString id)))
+
 (defn list-todo []
-  (sql/query ds ["select * from todo;"] snake-to-kebab))
+  (sql/query ds ["SELECT * FROM todo;"] snake-to-kebab))
+
+(defn list-undone []
+  (sql/query ds ["SELECT * FROM todo WHERE done = false;"] snake-to-kebab))
