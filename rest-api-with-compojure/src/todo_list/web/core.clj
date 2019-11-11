@@ -19,7 +19,7 @@
 
 (defn start []
   (when-not @server
-    (reset! server (s/run-jetty #'app {:port 3000 :join? false}))))
+    (reset! server (s/run-jetty #'app {:port 8080 :join? false}))))
 
 (defn stop []
   (when @server
