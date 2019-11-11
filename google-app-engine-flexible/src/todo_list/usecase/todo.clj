@@ -7,6 +7,7 @@
   (list-all-todo))
 
 (defn get-one [id get-one-todo]
+  (log/debugf "get-one: id=%s" id)
   (let [found (get-one-todo id)]
     (if (nil? found)
       (throw (ex-info "Todo Not Found" {:type :not-found}))
@@ -20,8 +21,9 @@
 
 (defn edit [todo get-one-todo update-todo]
   (log/debugf "edit todo %s" todo)
-  (let [id (get todo :id)
+  (let [id (:id todo)
         found (get-one id get-one-todo)]
+    (log/debug ::edit-found found)
     (->
      (merge found todo)
      (update-todo))))

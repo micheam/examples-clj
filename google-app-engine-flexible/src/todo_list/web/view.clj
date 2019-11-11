@@ -19,7 +19,7 @@
   [todos]
   (resp/ok (map marshal todos)))
 
-(defn updated []
+(defn updated [_]
   (resp/ok))
 
 (defn deleted []
