@@ -1,6 +1,5 @@
-# Rest API With Compojure
-
-This is a sample implementation of Web-Application with [ring-clojure/ring](https://github.com/ring-clojure/ring) and [weavejester/compojure](https://github.com/weavejester/compojure).  
+# rest api with compojure
+this is a sample implementation of Web-Application with [ring-clojure/ring](https://github.com/ring-clojure/ring) and [weavejester/compojure](https://github.com/weavejester/compojure).  
 
 This provides simple todo-list web-app.
 
@@ -29,7 +28,7 @@ Create new item:
 curl -i -X POST \
   -H'Content-Type: application/json' \
   -d'{"title":"read clojure book: Programming Clojure"}' \
-  http://localhost:3000/todo
+  http://localhost:8080/todo
 
 # HTTP/1.1 201 Created
 # Date: Fri, 06 Sep 2019 16:20:07 GMT
@@ -40,7 +39,7 @@ curl -i -X POST \
 
 Show item:
 ```sh
-curl -s http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b | jq '.'
+curl -s http://localhost:8080/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b | jq '.'
 
 # {
 #   "title": "read clojure book: Programming Clojure",
@@ -55,7 +54,7 @@ Edit item:
 ```sh
 curl -i -X PATCH \
   -d'{"descriptin":"https://www.amazon.co.jp/Programming-Clojure-Pragmatic-Programmers-Miller/dp/1680502468/ref=dp_ob_title_bk"}' \
-  http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
+  http://localhost:8080/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
  
 # HTTP/1.1 200 OK
 # Date: Fri, 06 Sep 2019 16:24:44 GMT
@@ -66,7 +65,7 @@ curl -i -X PATCH \
 Delete item:
 ```sh
 curl -i -X DELETE \
-  http://localhost:3000/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
+  http://localhost:8080/todo/d05bcd56-3616-4f02-a8c3-279c08ae790b
 
 # HTTP/1.1 200 OK
 # Date: Fri, 06 Sep 2019 16:27:23 GMT
@@ -74,7 +73,9 @@ curl -i -X DELETE \
 # Server: Jetty(9.4.12.v20180830)
 ```
 
-## uberjar
+## Deploy
+
+### Build application
 
 buid uberdeps with uberdeps:
 
@@ -85,4 +86,23 @@ buid uberdeps with uberdeps:
 run app via `java`:
 
     java -cp target/app.jar clojure.main -m todo-list.web.main
+
+### Run docker localy
+
+build image:
+
+    docker build . -t $USER/examples-clj/google-app-engine-flexible
+
+run container:
+
+    docker run -p 18080:8080 --rm $USER/examples-clj/google-app-engine-flexible
+
+
+You can call api via port=18080:
+
+    curl -i -X POST \
+      -H'Content-Type: application/json' \
+      -d'{"title":"read clojure book: Programming Clojure"}' \
+      http://localhost:18080/todo
+
 
