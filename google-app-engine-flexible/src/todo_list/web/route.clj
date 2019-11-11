@@ -6,9 +6,11 @@
                                   handle-list-todo,
                                   handle-get-todo
                                   handle-edit-todo
-                                  handle-delete-todo]]))
+                                  handle-delete-todo
+                                  handle-healthy]]))
 
 (defroutes todo-list-routes
+  (GET "/healthy" _ handle-healthy)
   (context "/todo" _
     (GET "/" _ handle-list-todo)
     (POST "/" _ handle-new-todo)

@@ -15,10 +15,10 @@ GET /todo
 GET /todo/20ca1b99-fd37-4e96-af34-fa26e072dce2
 
 --
-DELETE /todo/20ca1b99-fd37-4e96-af34-fa26e072dce2
+DELETE /todo/20ca1b99-fd37-4e96-af34-fa26e07
 
 --
-PATCH /todo/20ca1b99-fd37-4e96-af34-fa26e072dce2
+PATCH /todo/58e4bb0e-ce96-44cc-a6fa-48a4d27c40b4
 {
     "title": "changed title 📝",
     "done": true

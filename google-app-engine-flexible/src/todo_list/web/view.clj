@@ -11,6 +11,10 @@
   (resp/created
    (str "/todo/" (get todo :id))))
 
+(defn ok
+  []
+  (resp/ok))
+
 (defn todo->ok
   [todo]
   (resp/ok (marshal todo)))

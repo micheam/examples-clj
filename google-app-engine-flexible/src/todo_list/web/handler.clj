@@ -14,6 +14,10 @@
       :illegal-argument (v/bad-request)
       (v/internal-server-error))))
 
+(defn handle-healthy [_]
+  (log/debug :handle-healthy)
+  (v/ok))
+
 (defn handle-list-todo [_]
   (log/debug "handle-list-todo")
   (-> (uc/list-all intf/list-todo)

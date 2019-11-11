@@ -101,8 +101,6 @@ run container:
 You can call api via port=18080:
 
     curl -i -X POST \
-      -H'Content-Type: application/json' \
-      -d'{"title":"read clojure book: Programming Clojure"}' \
-      http://localhost:18080/todo
+      http://localhost:18080/healthy
 
 
